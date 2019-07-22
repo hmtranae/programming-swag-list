@@ -1,6 +1,7 @@
 package com.launchacademy.programmingswaglist.models;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -34,6 +37,12 @@ public class User {
 
   private String password;
 
+  @Column(name="first_name", nullable = false)
+  private String firstName;
+
+  @Column(name="last_name", nullable = false)
+  private String lastName;
+
   @ManyToMany
   @JoinTable(name="users_roles",
     joinColumns=
@@ -42,5 +51,13 @@ public class User {
     @JoinColumn(name="role_id", referencedColumnName="id")
   )
   private Set<Role> roles;
+
+  @ManyToOne //Many categories to one user
+  @JoinColumn(name="category_id", nullable=false)
+  private Category category;
+
+  @OneToMany (mappedBy="user")//One user to many reviews
+  private List<Review> reviews = new ArrayList<Review>();
+
 
 }
