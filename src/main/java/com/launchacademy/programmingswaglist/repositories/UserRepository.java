@@ -1,7 +1,6 @@
 package com.launchacademy.programmingswaglist.repositories;
 
 import com.launchacademy.programmingswaglist.models.User;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

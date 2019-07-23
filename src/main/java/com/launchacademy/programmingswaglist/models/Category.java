@@ -29,6 +29,6 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
 
-    @OneToMany(mappedBy = "categories")
+    @OneToMany(mappedBy = "category")
     private List<User> users;
 }

@@ -45,6 +45,14 @@ public class Product {
     )
     private Set<Category> categories;
 
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "product")
     private List<Review> reviewsList = new ArrayList<>();
+
+    @NotBlank
+    @Column(name = "url", nullable = false)
+    private String url;
+
+    @NotBlank
+    @Column(name = "image_url")
+    private String imageUrl;
 }
