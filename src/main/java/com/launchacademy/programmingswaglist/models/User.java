@@ -23,12 +23,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
-
   @Id
   @SequenceGenerator(name = "user_generator",
       sequenceName = "users_id_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE,
       generator = "user_generator")
+
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
@@ -52,12 +52,10 @@ public class User {
   )
   private Set<Role> roles;
 
-  @ManyToOne //Many categories to one user
+  @ManyToOne
   @JoinColumn(name="category_id", nullable=false)
   private Category category;
 
-  @OneToMany (mappedBy="users")//One user to many reviews
+  @OneToMany (mappedBy="users")
   private List<Review> reviews = new ArrayList<Review>();
-
-
 }
