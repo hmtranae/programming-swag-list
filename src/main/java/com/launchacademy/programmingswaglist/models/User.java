@@ -56,7 +56,7 @@ public class User {
   @JoinColumn(name="category_id", nullable=false)
   private Category category;
 
-  @OneToMany (mappedBy="user")//One user to many reviews
+  @OneToMany (mappedBy="users")//One user to many reviews
   private List<Review> reviews = new ArrayList<Review>();
 
 
