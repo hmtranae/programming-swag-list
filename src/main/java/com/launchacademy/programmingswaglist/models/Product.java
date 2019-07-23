@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -43,4 +45,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
     )
     private Set<Category> categories;
+
+    @OneToMany(mappedBy = "products")
+    private List<Reviews> reviewsList = new ArrayList<>();
+
 }
