@@ -32,7 +32,7 @@ public class Review {
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
-  @Column(name = "description", nullable = false)
+  @Column(name = "description")
   private String description;
 
   @ManyToOne
