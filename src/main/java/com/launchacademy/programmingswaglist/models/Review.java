@@ -2,7 +2,6 @@ package com.launchacademy.programmingswaglist.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
