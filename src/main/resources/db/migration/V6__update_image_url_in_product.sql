@@ -1,0 +1,3 @@
+ALTER TABLE products
+DROP COLUMN image_url,
+ADD COLUMN image_url TEXT NOT NULL;
