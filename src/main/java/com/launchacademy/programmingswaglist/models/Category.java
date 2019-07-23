@@ -23,16 +23,11 @@ public class Category {
             generator = "category_generator")
     @Column(name = "id", nullable = false, unique = true)
     private Integer id;
-
     @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
-
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
-
     @OneToMany(mappedBy = "categories")
     private List<User> users;
-
-
 }

@@ -34,18 +34,15 @@ public class Product {
     @Max(9999)
     @Column(name = "price", columnDefinition = "NUMERIC(6,2)", nullable = false)
     private Long price;
-
     @NotBlank
     @Column(name = "description", nullable = false)
     private String description;
-
     @ManyToMany
     @JoinTable(name = "products_categories",
             joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
     )
     private Set<Category> categories;
-
     @OneToMany(mappedBy = "products")
     private List<Reviews> reviewsList = new ArrayList<>();
 
