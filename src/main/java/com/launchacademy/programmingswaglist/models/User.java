@@ -42,7 +42,7 @@ public class User {
   private Set<Role> roles;
 
   @ManyToOne
-  @JoinColumn(name="category_id", nullable=false)
+  @JoinColumn(name="category_id")
   private Category category;
 
   @OneToMany (mappedBy="user")
