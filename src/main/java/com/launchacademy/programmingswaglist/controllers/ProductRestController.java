@@ -30,7 +30,6 @@ public class ProductRestController {
   private final RoleRepository roleRepository;
   private final UserRepository userRepository;
 
-
   @NoArgsConstructor
   private class ProductNotFoundException extends RuntimeException {};
 
