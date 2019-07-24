@@ -87,7 +87,7 @@ INSERT INTO products(name, price, url, image_url, description) VALUES
     'Visual Studio Code',
     0.00,
     'https://code.visualstudio.com/',
-    'https://user-images.githubusercontent.com/1487073/58344409-70473b80-7e0a-11e9-8570-b2efc6f8fa44.png',
+    'https://miro.medium.com/max/1200/1*u9Rw2zT1kQl0I0Oa-9vc_g.png',
     'Visual Studio Code combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive code editing, navigation, and understanding support along with lightweight debugging, a rich extensibility model, and lightweight integration with existing tools.'
 ),
 (
