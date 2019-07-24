@@ -10,7 +10,7 @@ INSERT INTO products(name, price, url, image_url, description) VALUES
     'Acer SB220Q',
     89.99,
     'https://www.amazon.com/Acer-SB220Q-Ultra-Thin-Frame-Monitor/dp/B07CVL2D2S/ref=sxin_5_ac_d_pm?keywords=monitor&pd_rd_i=B07CVL2D2S&pd_rd_r=4fa0fbd6-afe1-4c78-b3c5-2e10cef6508d&pd_rd_w=uBIpt&pd_rd_wg=4jebJ&pf_rd_p=64aaff2e-3b89-4fee-a107-2469ecbc5733&pf_rd_r=CQECPX0PN5H9F1E7XVAN&qid=1563904656&s=gateway',
-    'https://images-na.ssl-images-amazon.com/images/I/81QpkIctqPL._SL1500_.jpg''21.5" Full HD (1920 x 1080) Widescreen IPS Display. AMD Radeon FreeSync Refresh Rate: 75Hz - Using HDMI PorZero-Frame Design | Ultra-Thin | 4ms Response Time | IPS Panelt. Ports: 1 x HDMI & 1 x VGA',
+    'https://images-na.ssl-images-amazon.com/images/I/81QpkIctqPL._SL1500_.jpg',
     '21.5" Full HD (1920 x 1080) Widescreen IPS Display. AMD Radeon FreeSync Technology, Refresh Rate: 75Hz - Using HDMI Port, Zero-Frame Design | Ultra-Thin | 4ms Response Time | IPS Panel. Ports: 1 x HDMI & 1 x VGA. Aspect Ratio - 16:9. Color Supported - 16.7 Million Colors. Brightness - 250 Nit. Tilt Angle -5 degree to 15 degree. Horizontal Viewing Angle – 178 degree. Vertical Viewing Angle – 178 degree 75 hertz'
 ),
 (
