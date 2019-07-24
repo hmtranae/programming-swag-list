@@ -64,11 +64,3 @@ public class ProductRestController {
     return productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
   }
 }
-
-
-
-
-
-
-
-
