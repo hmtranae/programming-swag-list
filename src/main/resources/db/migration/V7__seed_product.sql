@@ -14,7 +14,7 @@ INSERT INTO products(name, price, url, image_url, description) VALUES
     '21.5" Full HD (1920 x 1080) Widescreen IPS Display. AMD Radeon FreeSync Technology, Refresh Rate: 75Hz - Using HDMI Port, Zero-Frame Design | Ultra-Thin | 4ms Response Time | IPS Panel. Ports: 1 x HDMI & 1 x VGA. Aspect Ratio - 16:9. Color Supported - 16.7 Million Colors. Brightness - 250 Nit. Tilt Angle -5 degree to 15 degree. Horizontal Viewing Angle – 178 degree. Vertical Viewing Angle – 178 degree 75 hertz'
 ),
 (
-    'Thermaltake Tt Esports X Comfort Air Gaming Office Chair with 4 On-The-Fly Adjustable Cooling Fans Black/Red - GC-XCF-BRLFDL-01',
+    'Thermaltake Tt Esports X Comfort Air Gaming Office Chair',
     343.46,
     'https://www.amazon.com/Thermaltake-Esports-Comfort-Adjustable-Cooling/dp/B07BDSP5ZH/ref=sr_1_9?keywords=ergonomic+chair&qid=1563899709&s=electronics&sr=1-9',
     'https://images-na.ssl-images-amazon.com/images/I/81PjnLdU05L._SL1500_.jpg',
