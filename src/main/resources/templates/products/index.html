@@ -11,8 +11,8 @@
   <h2 th:text="${product.name}">Product Name</h2>
   <h3 th:text="${product.price}">Price</h3>
   <h3 th:text="${product.description}">Description</h3>
-  <h3 th:text="${product.url}">URL</h3>
-  <h3 th:text="">Image</h3>
+  <div><img th:src="@{${product.imageUrl}}"/> </div>
+  <a th:href="@{${product.url}}">
 </div>
 </body>
 </html>
