@@ -9,6 +9,7 @@ import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
 import com.launchacademy.programmingswaglist.repositories.RoleRepository;
 import com.launchacademy.programmingswaglist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,14 +36,14 @@ public class ProductRestController {
     this.userRepository = userRepository;
   }
 
-  @GetMapping("api/v1/products")
-  public Iterable<Product> getList(){
+  @GetMapping("/api/v1/products")
+  public Iterable<Product> getList(Pageable pageable){
     return productRepository.findAll(pageable);
   }
 
-  @GetMapping("/api/v1/products/{productID}/show")
-  public Iterable<Product> getList(@PathVariable Integer productId) {
-    return productRepository.findAllProductByProductId(productId);
+  @GetMapping("/api/v1/products/{productId}/show")
+  public Product getProduct(@PathVariable Integer productId) {
+    return productRepository.findById(productId);
   }
 
 }
