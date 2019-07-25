@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-  <title>All available products:</title>
-</head>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body})}">
+
 <body>
-<h1>All available products</h1>
-<div th:each="product : ${products}">
-  <h2 th:text="'Name: ' + ${product.name}"></h2>
-  <h3 th:text="'Price: ' + ${product.price}"></h3>
-  <h3 th:text="'Description: ' + ${product.description}"></h3>
-  <div><img th:src="@{${product.imageUrl}}"/></div>
-  <a th:href="@{${product.url}}" th:text="'Product URL'"/>
-</div>
+  <div id='product-index'>
+  </div>
 </body>
+
 </html>

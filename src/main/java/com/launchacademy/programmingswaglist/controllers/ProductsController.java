@@ -18,13 +18,16 @@ public class ProductsController {
 
     @GetMapping("/products/show/{productId}")
     public String specificProduct(@PathVariable Integer productId, Model model){
-        productRepository.findById(productId).ifPresent(o -> model.addAttribute("product", o));
-        return "products/show";
+      return "products/show";
     }
 
     @GetMapping("/products")
-    public String getProductList(Model model){
-        model.addAttribute("products", productRepository.findAll());
-        return "products/index";
+    public String getProductList() {
+      return "products/index";
     }
+
+    @GetMapping("products/new")
+    public String getProductForm() {
+      return "products/new";
+    };
 }

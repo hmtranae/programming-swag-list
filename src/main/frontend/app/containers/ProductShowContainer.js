@@ -10,7 +10,8 @@ class ProductShowContainer extends Component {
   }
 
   componentDidMount() {
-    let productId = this.props.params.id
+    let pathnameArray = window.location.pathname.split('/')
+    let productId = pathnameArray[pathnameArray.length - 1];
     fetch(`/api/v1/products/${productId}/show`)
       .then(response => response.json())
       .then(body => {
@@ -26,7 +27,7 @@ class ProductShowContainer extends Component {
         price={this.state.product.price}
         description={this.state.product.description}
         url={this.state.product.url}
-        image={this.product.imageUrl}
+        image={this.state.product.imageUrl}
       />
     )
   }

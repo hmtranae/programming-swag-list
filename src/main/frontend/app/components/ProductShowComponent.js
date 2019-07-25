@@ -7,7 +7,7 @@ const ProductShowComponent = (props) => {
       <h2>{props.price}</h2>
       <p>{props.description}</p>
       <h2>{props.url}</h2>
-      <img src="{props.imageUrl}" />
+      <img src={props.image} />
     </div>
   )
 }

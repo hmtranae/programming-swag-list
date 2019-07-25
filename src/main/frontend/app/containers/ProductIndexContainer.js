@@ -6,8 +6,6 @@ class ProductIndexContainer extends Component {
     this.state = {
       products: []
     }
-
-    this.addNewProduct = this.addNewProduct.bind(this)
   }
 
   componentDidMount() {
@@ -24,8 +22,13 @@ class ProductIndexContainer extends Component {
     let productList = this.state.products.map(product => {
       return (
         <div>
-          <li>Product Name: {product.name},  Price: {product.price},
-               url: {product.url}, Image_Url: {product.imageUrl}, Description: {product.description}</li>
+          <li>
+            <p>Product Name: {product.name} </p>
+            <p>Price: {product.price} </p>
+            <p>url: {product.url} </p>
+            <p>Image_Url: {product.imageUrl} </p>
+            <p>Description: {product.description} </p>
+          </li>
         </div>
       )
     })
