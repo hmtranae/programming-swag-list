@@ -18,16 +18,28 @@ class ProductIndexContainer extends Component {
       })
   }
 
+  parseDescription(description) {
+    return description.split('.');
+  }
+
   render() {
     let productList = this.state.products.map(product => {
+      let descriptionArray = this.parseDescription(product.description);
+
+      let descriptionList = descriptionArray.map(sentence => {
+        return (
+          <li>{sentence}</li>
+        )
+      })
+
       return (
         <div>
           <li>
             <p>Product Name: {product.name} </p>
             <p>Price: {product.price} </p>
             <p>url: {product.url} </p>
-            <p>Image_Url:<img src= {product.imageUrl}/> </p>
-            <p>Description: {product.description} </p>
+            <p>Image_Url:<img src={product.imageUrl} /> </p>
+            <p>Description: {descriptionList} </p>
           </li>
         </div>
       )
