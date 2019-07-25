@@ -1,0 +1,15 @@
+import React from 'react';
+
+const ProductShowComponent = (props) => {
+  return (
+    <div className="product-show">
+      <h2>{props.name}</h2>
+      <h2>{props.price}</h2>
+      <p>{props.description}</p>
+      <h2>{props.url}</h2>
+      <img src={props.image} />
+    </div>
+  )
+}
+
+export default ProductShowComponent;

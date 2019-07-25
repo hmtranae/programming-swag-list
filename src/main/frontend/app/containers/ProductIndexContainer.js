@@ -7,8 +7,6 @@ class ProductIndexContainer extends Component {
     this.state = {
       products: []
     }
-
-    this.addNewProduct = this.addNewProduct.bind(this)
   }
 
   componentDidMount() {
@@ -21,12 +19,29 @@ class ProductIndexContainer extends Component {
       })
   }
 
+  parseDescription(description) {
+    return description.split('.');
+  }
+
   render() {
     let productList = this.state.products.map(product => {
+      let descriptionArray = this.parseDescription(product.description);
+
+      let descriptionList = descriptionArray.map(sentence => {
+        return (
+          <li>{sentence}</li>
+        )
+      })
+
       return (
         <div>
-          <li>Product Name: {product.name},  Price: {product.price},
-               url: {product.url}, Image_Url: {product.imageUrl}, Description: {product.description}</li>
+          <li>
+            <p>Product Name: {product.name} </p>
+            <p>Price: {product.price} </p>
+            <p>url: {product.url} </p>
+            <p>Image_Url:<img src={product.imageUrl} /> </p>
+            <p>Description: {descriptionList} </p>
+          </li>
         </div>
       )
     })

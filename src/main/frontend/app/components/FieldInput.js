@@ -1,0 +1,19 @@
+import React from 'react';
+
+const FieldInput = (props) => {
+  const { label, name, type, onChange, value } = props;
+  return (
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  )
+}
+
+export default FieldInput;
