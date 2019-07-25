@@ -26,7 +26,7 @@ class ProductIndexContainer extends Component {
             <p>Product Name: {product.name} </p>
             <p>Price: {product.price} </p>
             <p>url: {product.url} </p>
-            <p>Image_Url: {product.imageUrl} </p>
+            <p>Image_Url:<img src= {product.imageUrl}/> </p>
             <p>Description: {product.description} </p>
           </li>
         </div>
