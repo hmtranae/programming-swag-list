@@ -26,11 +26,9 @@ class ProductForm extends Component {
   }
 
   onChange(event) {
-    fieldName = event.target.name;
-    fieldValue = event.target.value;
-    this.setState({
-      [product.fieldName]: fieldValue
-    })
+    const { product } = this.state;
+    product[event.target.name] = event.target.value;
+    this.setState({ product })
   }
 
   persistProduct(event) {
