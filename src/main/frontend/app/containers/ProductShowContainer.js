@@ -21,17 +21,35 @@ class ProductShowContainer extends Component {
       })
   }
 
+  parseDescription(description) {
+    return description.split('.');
+  }
+
   render() {
-    return (
-      <ProductShowComponent
-        id={this.state.product.id}
-        name={this.state.product.name}
-        price={this.state.product.price}
-        description={this.state.product.description}
-        url={this.state.product.url}
-        image={this.state.product.imageUrl}
-      />
-    )
+    if (this.state.product.description) {
+      let descriptionArray = this.parseDescription(this.state.product.description);
+
+      let descriptionList = descriptionArray.map(sentence => {
+        return (
+          <li>{sentence}</li>
+        )
+      })
+
+      return (
+        <ProductShowComponent
+          id={this.state.product.id}
+          name={this.state.product.name}
+          price={this.state.product.price}
+          description={descriptionList}
+          url={this.state.product.url}
+          image={this.state.product.imageUrl}
+        />
+      )
+    } else {
+      return (
+        <div />
+      )
+    }
   }
 }
 
