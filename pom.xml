@@ -12,7 +12,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>programming-swag-list</name>
   <description>Programming Swag List</description>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <issueManagement>
     <url>https://github.com/launchacademy/giant-leap/issues</url>
