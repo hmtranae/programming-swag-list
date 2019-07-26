@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/products.scss';
 
 class ProductIndexContainer extends Component {
   constructor(props) {
@@ -14,31 +15,32 @@ class ProductIndexContainer extends Component {
         return response.json()
       })
       .then(products => {
-        this.setState({ products: products.content })
+        this.setState({ products })
       })
   }
 
   render() {
-    let productList = this.state.products.map(product => {
+    const { products } = this.state;
+    let productList = products.map(product => {
+
       return (
-        <div>
-          <li>
-            <p>Product Name: {product.name} </p>
-            <p>Price: {product.price} </p>
-            <p>url: {product.url} </p>
-            <p>Image_Url:<img src= {product.imageUrl}/> </p>
-            <p>Description: {product.description} </p>
-          </li>
-        </div>
+        <figure className="col-md-4" key={product.id}>
+          <h2> <a href={product.url}> {product.name} </a> </h2>
+          <h3>$ {product.price}.00</h3>
+          <a href={product.imageUrl}>
+            <img className="img-fluid" src={product.imageUrl} alt={product.name} />
+          </a>
+        </figure>
       )
     })
 
     return (
       <div>
-        <h1>The Swaggest Product List!:</h1>
-        <ul>
+        <h1>All the Swaggest Programming Products</h1>
+        <hr />
+        <div className="row">
           {productList}
-        </ul>
+        </div>
       </div>
     )
   }
