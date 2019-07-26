@@ -35,6 +35,7 @@ class ProductForm extends Component {
     const { name, price, description, url, imageUrl } = this.state.product;
     const { product } = this.state;
     event.preventDefault();
+    this.clearForm(event);
 
     if (this.validateNameSelection(name) &&
       this.validatePriceSelection(price) &&
