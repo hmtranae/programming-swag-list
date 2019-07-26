@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,12 +57,17 @@ public class ProductRestController {
   }
 
   @GetMapping("/api/v1/products")
-  public Iterable<Product> getList(Pageable pageable){
-    return productRepository.findAll(pageable);
+  public Iterable<Product> getList(){
+    return productRepository.findAll();
   }
 
   @GetMapping("/api/v1/products/{productId}/show")
   public Product getProduct(@PathVariable Integer productId) {
     return productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
+  }
+
+  @PostMapping("/api/v1/products")
+  public Product createProduct(@RequestBody Product product) {
+    return productRepository.save(product);
   }
 }

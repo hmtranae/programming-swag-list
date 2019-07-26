@@ -14,7 +14,7 @@ class ProductIndexContainer extends Component {
         return response.json()
       })
       .then(products => {
-        this.setState({ products: products.content })
+        this.setState({ products })
       })
   }
 

@@ -32,10 +32,26 @@ class ProductForm extends Component {
   }
 
   persistProduct(event) {
+    const { name, price, description, url, imageUrl } = this.state.product;
+    const { product } = this.state;
     event.preventDefault();
-    console.log('hi')
 
-    this.clearForm(event);
+    if (this.validateNameSelection(name) &&
+      this.validatePriceSelection(price) &&
+      this.validateDescriptionSelection(description) &&
+      this.validateUrlSelection(url) &&
+      this.validateImageUrl(imageUrl)) {
+      fetch("/api/v1/products", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(product)
+      })
+      this.clearForm(event);
+    }
   }
 
   validateNameSelection(selection) {
