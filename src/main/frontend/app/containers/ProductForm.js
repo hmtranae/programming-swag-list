@@ -35,8 +35,6 @@ class ProductForm extends Component {
 
   persistProduct(event) {
     event.preventDefault();
-    console.log('hi')
-
     this.clearForm(event);
   }
 
