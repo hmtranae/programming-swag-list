@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/showpage.scss'
 
 class ProductIndexContainer extends Component {
   constructor(props) {
@@ -37,9 +36,9 @@ class ProductIndexContainer extends Component {
         <div>
           <li>
             <p>Product Name: {product.name} </p>
-            <p>Price: {product.price} </p>
-            <p>url: {product.url} </p>
-            <p>Image_Url:<img src={product.imageUrl} /> </p>
+            <p>Price: ${product.price} </p>
+            <p><a href={product.url}>Visit Product Page</a></p>
+            <p><img src={product.imageUrl} /> </p>
             <p>Description: {descriptionList} </p>
           </li>
         </div>
@@ -48,7 +47,7 @@ class ProductIndexContainer extends Component {
 
     return (
       <div>
-        <h1>The Swaggest Product List of products!:</h1>
+        <h1>The Swaggiest Product List of products!:</h1>
         <ul>
           {productList}
         </ul>

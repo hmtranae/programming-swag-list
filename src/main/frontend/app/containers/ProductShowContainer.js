@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ProductShowComponent from '../components/ProductShowComponent';
 
+import '../css/showpage.scss'
+
 class ProductShowContainer extends Component {
   constructor(props) {
     super(props);
