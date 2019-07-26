@@ -18,11 +18,11 @@ class ReviewForm extends Component {
   }
 
   onChange(event) {
-    fieldName = event.target.name;
-    fieldValue = event.target.value;
-    this.setState({
-      [review.fieldName]: fieldValue
-    })
+    let fieldName = event.target.name;
+    let fieldValue = event.target.value;
+    let review = this.state.review;
+    review[fieldName] = fieldValue
+    this.setState({ review })
   }
 
   persistReview(event) {
