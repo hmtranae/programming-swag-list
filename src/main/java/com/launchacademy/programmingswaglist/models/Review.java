@@ -27,6 +27,9 @@ public class Review {
   @Column(name = "description")
   private String description;
 
+  @Column(name = "value", columnDefinition = "NUMERIC(1, 1)", nullable = false)
+  private Long value;
+
   @ManyToOne
   @JoinColumn(name = "product_id", nullable = false)
   private Product product;
@@ -34,7 +37,4 @@ public class Review {
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
-
-  @OneToMany(mappedBy = "review")
-  private List<Rating> ratings = new ArrayList<>();
 }

@@ -146,7 +146,8 @@ class ProductForm extends Component {
   }
 
   render() {
-    const { name, price, description, url, imageUrl, errors } = this.state;
+    const { errors } = this.state;
+    const { name, price, description, url, imageUrl } = this.state.product;
 
     let errorDiv;
     let errorItems;
