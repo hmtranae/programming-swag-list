@@ -4,7 +4,6 @@ body {
 }
 
 h2 {
-  color:blue;
   font-style: italic;
 }
 
@@ -45,4 +44,10 @@ label {
 
 .paragraph-spacing {
   margin-bottom: 20px;
+}
+
+.float-edit {
+  font-size:15px;
+  width:300px;
+  display:inline-block;
 }

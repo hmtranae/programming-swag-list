@@ -25,8 +25,8 @@ class ProductIndexContainer extends Component {
 
       return (
         <figure className="col-md-4" key={product.id}>
-          <h2> <a href={product.url}> {product.name} </a> </h2>
-          <h3>$ {product.price}.00</h3>
+          <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
+          <h3>$ {product.price}</h3>
           <a href={product.imageUrl}>
             <img className="img-fluid" src={product.imageUrl} alt={product.name} />
           </a>

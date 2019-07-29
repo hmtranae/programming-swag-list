@@ -82,7 +82,7 @@ class ReviewForm extends Component {
             onChange={this.onChange}
             value={description}
           />
-          <button type='submit' className="btn btn-primary btn-lg btn-block">Add product</button>
+          <button type='submit' className="btn btn-primary btn-lg btn-block">Add review</button>
         </form>
       </div>
     )
