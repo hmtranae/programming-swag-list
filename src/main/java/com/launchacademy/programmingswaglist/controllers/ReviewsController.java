@@ -14,9 +14,4 @@ public class ReviewsController {
       ReviewRepository reviewRepository) {
     this.reviewRepository = reviewRepository;
   }
-
-  @GetMapping("/reviews/new")
-  public String getReviewForm() {
-    return "reviews/new";
-  }
 }

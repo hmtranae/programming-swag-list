@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/showpage.scss';
 
 const FieldInput = (props) => {
   const { label, name, type, onChange, value } = props;
