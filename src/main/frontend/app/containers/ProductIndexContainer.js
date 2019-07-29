@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/products.scss';
+import RatingTile from '../components/RatingTile';
 
 class ProductIndexContainer extends Component {
   constructor(props) {
@@ -7,6 +8,8 @@ class ProductIndexContainer extends Component {
     this.state = {
       products: []
     }
+
+    this.grabProductReviews = this.grabProductReviews.bind(this); 
   }
 
   componentDidMount() {
@@ -19,11 +22,22 @@ class ProductIndexContainer extends Component {
       })
   }
 
+  grabProductReviews(product) {
+    return fetch(`/api/v1/reviews/sum/${product.id}`)
+      .then(res => res.json())
+      .then(sum => sum)
+
+    // will return aggregate rating
+  }
+
   render() {
     const { products } = this.state;
     let productList = products.map(product => {
-
-      return (
+      
+      this.grabProductReviews(product)
+        .then(sum => console.log(sum))
+      
+    return (
         <figure className="col-md-4" key={product.id}>
           <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
           <h3>$ {product.price}</h3>
