@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FieldInput from '../components/FieldInput';
+import "../css/showpage.scss";
 
 class ProductForm extends Component {
   constructor(props) {
@@ -169,7 +170,6 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={name}
           />
-          <br />
           <FieldInput
             label="Price: "
             name="price"
@@ -177,7 +177,6 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={price}
           />
-          <br />
           <FieldInput
             label="Description: "
             name="description"
@@ -185,7 +184,6 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={description}
           />
-          <br />
           <FieldInput
             label="Product Url: "
             name="url"
@@ -193,7 +191,6 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={url}
           />
-          <br />
           <FieldInput
             label="Image Url: "
             name="imageUrl"
@@ -201,7 +198,6 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={imageUrl}
           />
-          <br />
           <button type='submit' className="btn btn-primary btn-lg btn-block">Add product</button>
         </form>
       </div>
