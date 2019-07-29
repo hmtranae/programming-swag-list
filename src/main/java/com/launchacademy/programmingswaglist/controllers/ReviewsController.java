@@ -17,6 +17,6 @@ public class ReviewsController {
 
   @GetMapping("/reviews/new")
   public String getReviewForm() {
-    return "products/index";
+    return "reviews/new";
   }
 }
