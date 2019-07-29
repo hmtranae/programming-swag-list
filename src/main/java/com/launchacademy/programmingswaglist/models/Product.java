@@ -32,7 +32,7 @@ public class Product {
     @Min(0)
     @Max(9999)
     @Column(name = "price", columnDefinition = "NUMERIC(6,2)", nullable = false)
-    private Long price;
+    private Float price;
 
     @NotBlank
     @Column(name = "description", nullable = false)

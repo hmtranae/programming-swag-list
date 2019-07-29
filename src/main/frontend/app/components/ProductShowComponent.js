@@ -1,13 +1,24 @@
 import React from 'react';
+import '../css/showpage.scss'
 
 const ProductShowComponent = (props) => {
   return (
-    <div className="product-show">
-      <h2>{props.name}</h2>
-      <h2>{props.price}</h2>
-      <p>{props.description}</p>
-      <h2>{props.url}</h2>
-      <img src={props.image} />
+    <div className="flex-container">
+      <div><img src={props.image} alt={props.name}/></div>
+      <div>
+        <div className="product-name">
+          <h2>{props.name}</h2>
+        </div>
+        <h2>Price: ${props.price} & Free Shippping</h2>
+        <p><a href={props.url}>Visit Product Page</a></p>
+        <div className="description">
+          <p>Product Description:</p>
+          <br/>
+          <ul>
+            {props.description}
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }
