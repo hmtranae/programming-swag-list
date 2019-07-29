@@ -5,12 +5,14 @@ import ProductIndexContainer from './containers/ProductIndexContainer';
 import ProductShowContainer from './containers/ProductShowContainer';
 import ProductForm from './containers/ProductForm';
 import ReviewForm from './containers/ReviewForm';
+import Welcome from './components/Welcome';
 
 const pageMap = {
   "product-index": ProductIndexContainer,
   "product-show": ProductShowContainer,
   "product-form": ProductForm,
-  "review-form": ReviewForm
+  "review-form": ReviewForm,
+  "welcome-page": Welcome
 }
 
 for (const domId in pageMap) {
