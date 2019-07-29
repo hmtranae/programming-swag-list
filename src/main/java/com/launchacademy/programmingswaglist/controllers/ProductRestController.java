@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,5 +63,11 @@ public class ProductRestController {
   @PostMapping("/api/v1/products")
   public Product createProduct(@RequestBody Product product) {
     return productRepository.save(product);
+  }
+
+  @DeleteMapping("/api/v1/products/{productId}")
+  public String deleteProductAndReviews(@PathVariable Integer productId) {
+    productRepository.deleteById(productId);
+    reviewRepository.
   }
 }
