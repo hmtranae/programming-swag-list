@@ -8,7 +8,8 @@ import ProductForm from './containers/ProductForm';
 const pageMap = {
   "product-index": ProductIndexContainer,
   "product-show": ProductShowContainer,
-  "product-form": ProductForm
+  "product-form": ProductForm,
+  "review-form": ReviewForm
 }
 
 for (const domId in pageMap) {
