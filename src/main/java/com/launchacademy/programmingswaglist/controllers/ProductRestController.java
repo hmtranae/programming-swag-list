@@ -3,14 +3,11 @@ package com.launchacademy.programmingswaglist.controllers;
 import com.launchacademy.programmingswaglist.models.Product;
 import com.launchacademy.programmingswaglist.repositories.CategoryRepository;
 import com.launchacademy.programmingswaglist.repositories.ProductRepository;
-import com.launchacademy.programmingswaglist.repositories.RatingRepository;
-import com.launchacademy.programmingswaglist.repositories.RatingTypeRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
 import com.launchacademy.programmingswaglist.repositories.RoleRepository;
 import com.launchacademy.programmingswaglist.repositories.UserRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,14 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductRestController {
   private final ProductRepository productRepository;
   private final CategoryRepository categoryRepository;
-  private final RatingRepository ratingRepository;
-  private final RatingTypeRepository ratingTypeRepository;
   private final ReviewRepository reviewRepository;
   private final RoleRepository roleRepository;
   private final UserRepository userRepository;
 
   @NoArgsConstructor
-  private class ProductNotFoundException extends RuntimeException {};
+  static class ProductNotFoundException extends RuntimeException {};
 
   @ControllerAdvice
   private class ProductNotFoundAdvice{
@@ -46,11 +41,9 @@ public class ProductRestController {
   }
 
   @Autowired
-  public ProductRestController(ProductRepository productRepository, CategoryRepository categoryRepository, RatingRepository ratingRepository, RatingTypeRepository ratingTypeRepository, ReviewRepository reviewRepository, RoleRepository roleRepository, UserRepository userRepository) {
+  public ProductRestController(ProductRepository productRepository, CategoryRepository categoryRepository, ReviewRepository reviewRepository, RoleRepository roleRepository, UserRepository userRepository) {
     this.productRepository = productRepository;
     this.categoryRepository = categoryRepository;
-    this.ratingRepository = ratingRepository;
-    this.ratingTypeRepository = ratingTypeRepository;
     this.reviewRepository = reviewRepository;
     this.roleRepository = roleRepository;
     this.userRepository = userRepository;

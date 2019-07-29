@@ -8,6 +8,7 @@ class ReviewForm extends Component {
       errors: {},
       review: {
         description: '',
+        value: ''
       }
     }
 
@@ -26,8 +27,21 @@ class ReviewForm extends Component {
   }
 
   persistReview(event) {
+    const { review } = this.state;
+    let pathname = window.location.pathname.split('/');
+    let productId = pathname[pathname.length - 1];
+
     event.preventDefault();
-    console.log('hi')
+
+    fetch(`/api/v1/reviews/${productId}`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(review)
+    })
 
     this.clearForm(event);
   }
@@ -53,12 +67,14 @@ class ReviewForm extends Component {
       errors: {},
       review: {
         description: '',
+        value: ''
       }
     })
   }
 
   render() {
-    const { description, errors } = this.state;
+    const { errors } = this.state;
+    const { description, value } = this.state.review;
 
     let errorDiv;
     let errorItems;
@@ -73,7 +89,7 @@ class ReviewForm extends Component {
     return (
       <div className="container">
         <h1>Add a New Review</h1>
-        <form onSubmit={this.persistProduct}>
+        <form onSubmit={this.persistReview}>
           {errorDiv}
           <FieldInput
             label="Description: "
@@ -81,6 +97,15 @@ class ReviewForm extends Component {
             type="text"
             onChange={this.onChange}
             value={description}
+          />
+          <FieldInput
+            label="Rating Value: "
+            name="value"
+            type="number"
+            min="0"
+            max="5"
+            onChange={this.onChange}
+            value={value}
           />
           <button type='submit' className="btn btn-primary btn-lg btn-block">Add review</button>
         </form>
