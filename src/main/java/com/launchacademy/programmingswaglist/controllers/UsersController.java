@@ -43,7 +43,7 @@ public class UsersController {
     return "redirect:/welcome";
   }
 
-  @GetMapping("/login")
+  @GetMapping({"/", "/login"})
   public String login(Model model, String error, String logout) {
     if (error != null)
       model.addAttribute("error", "Your username and password is invalid.");
@@ -54,10 +54,10 @@ public class UsersController {
     return "security/login";
   }
 
-  @GetMapping({"/", "/welcome"})
+  @GetMapping("/welcome")
   public String welcome(Model model, Authentication authentication) {
     org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)authentication.getPrincipal();
     model.addAttribute("username", user.getUsername());
-    return "root/welcome";
+    return "root/welcomepage";
   }
 }
