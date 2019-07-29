@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FieldInput from '../components/FieldInput';
+import "../css/showpage.scss";
 
 class ProductForm extends Component {
   constructor(props) {
@@ -158,52 +159,48 @@ class ProductForm extends Component {
     }
 
     return (
-      <form onSubmit={this.persistProduct}>
-        {errorDiv}
-        <FieldInput
-          label="Name: "
-          name="name"
-          type="text"
-          onChange={this.onChange}
-          value={name}
-        />
-        <br />
-        <FieldInput
-          label="Price: "
-          name="price"
-          type="number"
-          onChange={this.onChange}
-          value={price}
-        />
-        <br />
-        <FieldInput
-          label="Description: "
-          name="description"
-          type="text"
-          onChange={this.onChange}
-          value={description}
-        />
-        <br />
-        <FieldInput
-          label="Product Url: "
-          name="url"
-          type="text"
-          onChange={this.onChange}
-          value={url}
-        />
-        <br />
-        <FieldInput
-          label="Image Url: "
-          name="imageUrl"
-          type="text"
-          onChange={this.onChange}
-          value={imageUrl}
-        />
-        <br />
-        <div>
-          <input type='submit' value='Add product' />
-        </div>
-      </form>
+      <div className="container">
+        <h1>Add a New Product</h1>
+        <form onSubmit={this.persistProduct}>
+          {errorDiv}
+          <FieldInput
+            label="Name: "
+            name="name"
+            type="text"
+            onChange={this.onChange}
+            value={name}
+          />
+          <FieldInput
+            label="Price: "
+            name="price"
+            type="number"
+            onChange={this.onChange}
+            value={price}
+          />
+          <FieldInput
+            label="Description: "
+            name="description"
+            type="text"
+            onChange={this.onChange}
+            value={description}
+          />
+          <FieldInput
+            label="Product Url: "
+            name="url"
+            type="text"
+            onChange={this.onChange}
+            value={url}
+          />
+          <FieldInput
+            label="Image Url: "
+            name="imageUrl"
+            type="text"
+            onChange={this.onChange}
+            value={imageUrl}
+          />
+          <button type='submit' className="btn btn-primary btn-lg btn-block">Add product</button>
+        </form>
+      </div>
     )
   }
 }
