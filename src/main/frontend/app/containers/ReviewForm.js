@@ -58,7 +58,7 @@ class ReviewForm extends Component {
   }
 
   render() {
-    const { description } = this.state;
+    const { description, errors } = this.state;
 
     let errorDiv;
     let errorItems;
@@ -71,19 +71,20 @@ class ReviewForm extends Component {
     }
 
     return (
-      <form onSubmit={this.persistProduct}>
-        {errorDiv}
-        <FieldInput
-          label="Description: "
-          name="description"
-          type="text"
-          onChange={this.onChange}
-          value={description}
-        />
-        <div>
-          <input type='submit' value='Add review' />
-        </div>
-      </form>
+      <div className="container">
+        <h1>Add a New Review</h1>
+        <form onSubmit={this.persistProduct}>
+          {errorDiv}
+          <FieldInput
+            label="Description: "
+            name="description"
+            type="text"
+            onChange={this.onChange}
+            value={description}
+          />
+          <button type='submit' className="btn btn-primary btn-lg btn-block">Add product</button>
+        </form>
+      </div>
     )
   }
 }

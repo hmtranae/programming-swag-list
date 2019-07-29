@@ -4,6 +4,7 @@ import ReactDom from "react-dom";
 import ProductIndexContainer from './containers/ProductIndexContainer';
 import ProductShowContainer from './containers/ProductShowContainer';
 import ProductForm from './containers/ProductForm';
+import ReviewForm from './containers/ReviewForm';
 
 const pageMap = {
   "product-index": ProductIndexContainer,
