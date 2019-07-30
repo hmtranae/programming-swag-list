@@ -40,4 +40,9 @@ public class ReviewsController {
     productRepository.save(product);
     return reviewRepository.save(review);
   }
+
+  @GetMapping("/api/v1/reviews/{productId}")
+  public Review getReviews
+      reviewRepository.findById(productId);
+
 }

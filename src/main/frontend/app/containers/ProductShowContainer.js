@@ -25,6 +25,22 @@ class ProductShowContainer extends Component {
     return description.split('.');
   }
 
+  grabProductReviews(product) {
+
+  return fetch('/api/v1/reviews/{productId}') //gets all reviews for particular ID
+  .then(res => res.json())
+  }
+ //reviews controller is now rest controller
+ //get by ID
+ //find by product id in repository and pass to controller
+ //then need to list each
+ //reviews_aggregate
+ //show just the number & the description - do not need to show overall #
+
+
+
+
+
   render() {
     if (this.state.product.description) {
       let descriptionArray = this.parseDescription(this.state.product.description);
