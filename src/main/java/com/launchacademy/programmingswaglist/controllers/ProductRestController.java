@@ -9,15 +9,7 @@ import com.launchacademy.programmingswaglist.repositories.UserRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductRestController {
@@ -63,4 +55,12 @@ public class ProductRestController {
   public Product createProduct(@RequestBody Product product) {
     return productRepository.save(product);
   }
+
+  @PatchMapping("/api/v1/products/{productId}")
+  public Product productpdateProduct(@RequestBody Product partialUpdate, @PathVariable String id){
+   return productRepository.save(partialUpdate, id);
+  }
+
+
+
 }
