@@ -6,6 +6,8 @@ import com.launchacademy.programmingswaglist.repositories.ProductRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
 import com.launchacademy.programmingswaglist.repositories.RoleRepository;
 import com.launchacademy.programmingswaglist.repositories.UserRepository;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,8 +68,7 @@ public class ProductRestController {
   }
 
   @DeleteMapping("/api/v1/products/{productId}")
-  public String deleteProductAndReviews(@PathVariable Integer productId) {
+  public void deleteProductAndReviews(@PathVariable Integer productId) {
     productRepository.deleteById(productId);
-    reviewRepository.
   }
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Integer> {
-  void deleteByProductId()
+  void deleteByProductId(Integer productId);
 }

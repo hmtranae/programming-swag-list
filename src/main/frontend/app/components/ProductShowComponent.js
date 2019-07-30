@@ -5,11 +5,11 @@ import ReviewForm from '../containers/ReviewForm';
 const deleteProduct = () => {
   const pathname = window.location.pathname.split('/');
   const productId = pathname[pathname.length - 1];
-
   fetch(`/api/v1/products/${productId}`, {
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' },
   })
+  document.location.replace('/products')
 };
 
 const ProductShowComponent = (props) => {
@@ -24,7 +24,7 @@ const ProductShowComponent = (props) => {
             <span className="glyphicon glyphicon-edit" /> Delete Product
           </button>
           <button type="button" className="btn btn-default btn-sm float-edit">
-            <span className="glyphicon glyphicon-edit" /> Edit
+            <span className="glyphicon glyphicon-edit" /> Edit Product
           </button>
           <h2>{name}</h2>
         </div>

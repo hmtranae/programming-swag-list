@@ -45,7 +45,7 @@ public class Product {
     )
     private Set<Category> categories;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviewsList = new ArrayList<>();
 
     @NotBlank
