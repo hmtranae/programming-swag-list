@@ -30,4 +30,9 @@ public class ProductsController {
     public String getProductForm() {
       return "products/new";
     }
+
+    @GetMapping("products/edit/{productId}")
+    public String getProductEditForm() {
+      return "products/edit";
+    }
 }

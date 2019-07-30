@@ -13,7 +13,7 @@ const deleteProduct = () => {
 };
 
 const ProductShowComponent = (props) => {
-  const { image, name, price, url, description } = props;
+  const { id, image, name, price, url, description } = props;
 
   return (
     <div className="flex-container">
@@ -21,11 +21,11 @@ const ProductShowComponent = (props) => {
       <div>
         <div className="product-name">
           <button onClick={deleteProduct} type="button" className="btn btn-danger btn-sm float-edit">
-            <span className="glyphicon glyphicon-edit" /> Delete Product
+            Delete Product
           </button>
-          <button type="button" className="btn btn-default btn-sm float-edit">
-            <span className="glyphicon glyphicon-edit" /> Edit Product
-          </button>
+          <a href={`/products/edit/${id}`} className="btn btn-default btn-sm float-edit">
+            Edit Product
+          </a>
           <h2>{name}</h2>
         </div>
         <h2>Price: ${price} & Free Shippping</h2>
