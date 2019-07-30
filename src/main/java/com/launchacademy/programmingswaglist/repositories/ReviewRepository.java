@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Integer> {
-
-    List<Review> findAllByProductId(Integer productId);
+  void deleteByProductId(Integer productId);
+  List<Review> findAllByProductId(Integer productId);
 }

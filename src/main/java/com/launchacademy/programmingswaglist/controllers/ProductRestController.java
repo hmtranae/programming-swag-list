@@ -8,6 +8,8 @@ import com.launchacademy.programmingswaglist.repositories.ProductRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
 import com.launchacademy.programmingswaglist.repositories.RoleRepository;
 import com.launchacademy.programmingswaglist.repositories.UserRepository;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,5 +91,10 @@ public class ProductRestController {
   @PostMapping("/api/v1/products")
   public Product createProduct(@RequestBody Product product) {
     return productRepository.save(product);
+  }
+
+  @DeleteMapping("/api/v1/products/{productId}")
+  public void deleteProductAndReviews(@PathVariable Integer productId) {
+    productRepository.deleteById(productId);
   }
 }
