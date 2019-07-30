@@ -29,7 +29,7 @@ class ProductEdit extends Component {
   componentDidMount() {
     let pathnameArray = window.location.pathname.split('/')
     let productId = pathnameArray[pathnameArray.length - 1];
-    fetch(`/api/v1/products/${productId}/show`)
+    fetch(`/api/v1/edit/${productId}`)
       .then(response => response.json())
       .then(body => {
         let product = {};
@@ -59,7 +59,14 @@ class ProductEdit extends Component {
       this.validateDescriptionSelection(description) &&
       this.validateUrlSelection(url) &&
       this.validateImageUrl(imageUrl)) {
-      fetch()
+        let pathnameArray = window.location.pathname.split('/')
+        let productId = pathnameArray[pathnameArray.length - 1];    
+      fetch(`/api/v1/edit/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
 
       this.clearForm(event);
     }
