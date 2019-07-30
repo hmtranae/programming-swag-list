@@ -5,7 +5,8 @@ class ProductIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      aggregateReviews: []
     }
   }
 
@@ -14,19 +15,24 @@ class ProductIndexContainer extends Component {
       .then(response => {
         return response.json()
       })
-      .then(products => {
-        this.setState({ products })
+      .then(obj => {
+        this.setState({
+          products: obj.products,
+          aggregateReviews: obj.aggregateReviews
+        })
       })
   }
 
-  render() {
-    const { products } = this.state;
-    let productList = products.map(product => {
 
+
+  render() {
+    const { products, aggregateReviews } = this.state;
+    let productList = products.map((product, i) => {
       return (
         <figure className="col-md-4" key={product.id}>
           <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
           <h3>$ {product.price}</h3>
+          <h3>Overalll Rating: {aggregateReviews[i]}</h3>
           <a href={product.imageUrl}>
             <img className="img-fluid" src={product.imageUrl} alt={product.name} />
           </a>
