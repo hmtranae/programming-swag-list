@@ -90,7 +90,6 @@ public class ProductRestController {
     return productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
   }
 
-
   @PutMapping("/api/v1/edit/{productId}")
   public void saveProductEditUpdate(@RequestBody Product updateProduct, @PathVariable Integer productId){
     Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
