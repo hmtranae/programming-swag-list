@@ -7,7 +7,7 @@ class ProductShowContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {}
+      product: {},
       reviews: []
     }
   }
@@ -20,22 +20,24 @@ class ProductShowContainer extends Component {
 //      .then(body => {
 //        this.setState({ product: body })
 //      })
-     Promise.all([fetch('/api/v1/products/${productId}/show'), fetch('/api/v1/reviews/{productId}')])
+     Promise.all([fetch(`/api/v1/products/${productId}/show`), fetch(`/api/v1/reviews/${productId}`)])
           .then(([res1, res2]) => {
              return Promise.all([res1.json(), res2.json()])
           })
           .then(([res1, res2]) => {
             this.setState( { product: res1 } )
-            this.setState ( { review: res2 } )
+            this.setState ( { reviews: res2 } )
           });
-    }
-  }
+   }
+
 
   parseDescription(description) {
     return description.split('.');
   }
 
   render() {
+  console.log(this.state.product)
+  console.log(this.state.reviews)
     if (this.state.product.description) {
       let descriptionArray = this.parseDescription(this.state.product.description);
 
