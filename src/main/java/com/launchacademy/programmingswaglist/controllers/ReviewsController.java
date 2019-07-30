@@ -24,7 +24,7 @@ public class ReviewsController {
   }
 
   @PostMapping("/api/v1/reviews/{productId}")
-  public Review createReview(@RequestBody Review review, @PathVariable Integer productId) {
+  public void createReview(@RequestBody Review review, @PathVariable Integer productId) {
     Product product = productRepository.findById(productId)
         .orElseThrow(() -> new ProductNotFoundException());
     List<Review> reviews = product.getReviewsList();
@@ -34,7 +34,6 @@ public class ReviewsController {
     product.setReviewsList(reviews);
 
     productRepository.save(product);
-    return reviewRepository.save(review);
   }
 
   @GetMapping("/api/v1/reviews/{productId}")
