@@ -44,7 +44,7 @@ public class ReviewsController {
   }
 
   @GetMapping("/api/v1/reviews/{productId}")
-  public Review getReviews(@PathVariable Integer productId) {
+  public List<Review> getReviews(@PathVariable Integer productId) {
     return reviewRepository.findAllByProductId(productId);
   }
 }

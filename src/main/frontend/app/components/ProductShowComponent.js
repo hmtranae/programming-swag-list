@@ -3,7 +3,16 @@ import '../css/showpage.scss';
 import ReviewForm from '../containers/ReviewForm';
 
 const ProductShowComponent = (props) => {
-  const { image, name, price, url, description } = props;
+  const { image, name, price, url, description, reviews } = props;
+
+  let reviewList = reviews.map(review => {
+    return (
+      <div key={review.id}>
+        <h1>{review.description}</h1>
+        <h2>{review.value}</h2>
+      </div>
+    )
+  })
 
   return (
     <div className="flex-container">
@@ -25,6 +34,8 @@ const ProductShowComponent = (props) => {
           <ul>
             {description}
           </ul>
+          <hr />
+          {reviewList}
           <hr />
           <ReviewForm />
         </div>

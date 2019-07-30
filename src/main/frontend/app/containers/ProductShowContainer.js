@@ -15,20 +15,16 @@ class ProductShowContainer extends Component {
   componentDidMount() {
     let pathnameArray = window.location.pathname.split('/')
     let productId = pathnameArray[pathnameArray.length - 1];
-//    fetch(`/api/v1/products/${productId}/show`)
-//      .then(response => response.json())
-//      .then(body => {
-//        this.setState({ product: body })
-//      })
-     Promise.all([fetch(`/api/v1/products/${productId}/show`), fetch(`/api/v1/reviews/${productId}`)])
-          .then(([res1, res2]) => {
-             return Promise.all([res1.json(), res2.json()])
-          })
-          .then(([res1, res2]) => {
-            this.setState( { product: res1 } )
-            this.setState ( { reviews: res2 } )
-          });
-   }
+
+    Promise.all([fetch(`/api/v1/products/${productId}/show`), fetch(`/api/v1/reviews/${productId}`)])
+      .then(([res1, res2]) => {
+        return Promise.all([res1.json(), res2.json()])
+      })
+      .then(([product, reviews]) => {
+        this.setState({ product })
+        this.setState({ reviews: reviews })
+      });
+  }
 
 
   parseDescription(description) {
@@ -36,25 +32,25 @@ class ProductShowContainer extends Component {
   }
 
   render() {
-  console.log(this.state.product)
-  console.log(this.state.reviews)
-    if (this.state.product.description) {
-      let descriptionArray = this.parseDescription(this.state.product.description);
+    const { product, reviews } = this.state;
+    if (product.description) {
+      let descriptionArray = this.parseDescription(product.description);
 
       let descriptionList = descriptionArray.map(sentence => {
         return (
-          <li>{sentence}</li>
+          <li key={sentence}>{sentence}</li>
         )
       })
 
       return (
         <ProductShowComponent
-          id={this.state.product.id}
-          name={this.state.product.name}
-          price={this.state.product.price}
+          id={product.id}
+          name={product.name}
+          price={product.price}
           description={descriptionList}
-          url={this.state.product.url}
-          image={this.state.product.imageUrl}
+          url={product.url}
+          image={product.imageUrl}
+          reviews={reviews}
         />
       )
     } else {
