@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class ReviewsController {
+
   private ReviewRepository reviewRepository;
   private ProductRepository productRepository;
 
@@ -24,7 +25,8 @@ public class ReviewsController {
 
   @PostMapping("/api/v1/reviews/{productId}")
   public Review createReview(@RequestBody Review review, @PathVariable Integer productId) {
-    Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new ProductNotFoundException());
     List<Review> reviews = product.getReviewsList();
     review.setProduct(product);
 
@@ -35,19 +37,8 @@ public class ReviewsController {
     return reviewRepository.save(review);
   }
 
-  @GetMapping("/api/v1/reviews/sum/{productId}")
-  public long getAggregateReviews(@PathVariable Integer productId) {
-    List<Review> reviews = reviewRepository.findAllByProductId(productId);
-
-    if (reviews.size() == 0) {
-      return 0;
-    } else {
-      long count = 0;
-      for (Review review : reviews) {
-        count += review.getValue();
-      }
-      return count / reviews.size();
-    }
+  @GetMapping("/api/v1/reviews/{productId}")
+  public List<Review> getReviews(@PathVariable Integer productId) {
+    return reviewRepository.findAllByProductId(productId);
   }
-
 }

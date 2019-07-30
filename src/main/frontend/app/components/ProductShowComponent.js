@@ -1,6 +1,7 @@
 import React from 'react';
-import '../css/showpage.scss';
 import ReviewForm from '../containers/ReviewForm';
+import RatingTile from "./RatingTile";
+import '../css/showpage.scss';
 
 const deleteProduct = () => {
   const pathname = window.location.pathname.split('/');
@@ -13,7 +14,17 @@ const deleteProduct = () => {
 };
 
 const ProductShowComponent = (props) => {
-  const { image, name, price, url, description } = props;
+  const { image, name, price, url, description, reviews } = props;
+
+  let reviewList = reviews.map(review => {
+    return (
+      <RatingTile
+        key={review.id}
+        value={review.value}
+        description={review.description}
+      />
+    )
+  })
 
   return (
     <div className="flex-container">
@@ -36,6 +47,8 @@ const ProductShowComponent = (props) => {
             {description}
           </ul>
           <hr />
+          <h2>Ratings</h2>
+          {reviewList}
           <ReviewForm />
         </div>
       </div>
