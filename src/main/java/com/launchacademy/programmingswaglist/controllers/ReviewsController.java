@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ReviewsController {
+
   private ReviewRepository reviewRepository;
   private ProductRepository productRepository;
 
@@ -30,7 +31,8 @@ public class ReviewsController {
 
   @PostMapping("/api/v1/reviews/{productId}")
   public Review createReview(@RequestBody Review review, @PathVariable Integer productId) {
-    Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new ProductNotFoundException());
     List<Review> reviews = product.getReviewsList();
     review.setProduct(product);
 
@@ -42,7 +44,7 @@ public class ReviewsController {
   }
 
   @GetMapping("/api/v1/reviews/{productId}")
-  public Review getReviews
-      reviewRepository.findById(productId);
-
+  public Review getReviews(@PathVariable Integer productId) {
+    return reviewRepository.findAllByProductId(productId);
+  }
 }

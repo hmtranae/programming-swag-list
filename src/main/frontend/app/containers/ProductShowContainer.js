@@ -8,38 +8,32 @@ class ProductShowContainer extends Component {
     super(props);
     this.state = {
       product: {}
+      reviews: []
     }
   }
 
   componentDidMount() {
     let pathnameArray = window.location.pathname.split('/')
     let productId = pathnameArray[pathnameArray.length - 1];
-    fetch(`/api/v1/products/${productId}/show`)
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ product: body })
-      })
+//    fetch(`/api/v1/products/${productId}/show`)
+//      .then(response => response.json())
+//      .then(body => {
+//        this.setState({ product: body })
+//      })
+     Promise.all([fetch('/api/v1/products/${productId}/show'), fetch('/api/v1/reviews/{productId}')])
+          .then(([res1, res2]) => {
+             return Promise.all([res1.json(), res2.json()])
+          })
+          .then(([res1, res2]) => {
+            this.setState( { product: res1 } )
+            this.setState ( { review: res2 } )
+          });
+    }
   }
 
   parseDescription(description) {
     return description.split('.');
   }
-
-  grabProductReviews(product) {
-
-  return fetch('/api/v1/reviews/{productId}') //gets all reviews for particular ID
-  .then(res => res.json())
-  }
- //reviews controller is now rest controller
- //get by ID
- //find by product id in repository and pass to controller
- //then need to list each
- //reviews_aggregate
- //show just the number & the description - do not need to show overall #
-
-
-
-
 
   render() {
     if (this.state.product.description) {
