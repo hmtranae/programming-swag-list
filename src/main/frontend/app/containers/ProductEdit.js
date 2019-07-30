@@ -49,7 +49,6 @@ class ProductEdit extends Component {
   }
 
   updateProduct(event) {
-    const { name, price, description, url, imageUrl } = this.state.product;
     const { product } = this.state;
     event.preventDefault();
 
