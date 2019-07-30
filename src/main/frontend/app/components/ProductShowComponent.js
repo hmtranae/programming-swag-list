@@ -1,16 +1,18 @@
 import React from 'react';
-import '../css/showpage.scss';
 import ReviewForm from '../containers/ReviewForm';
+import RatingTile from "./RatingTile";
+import '../css/showpage.scss';
 
 const ProductShowComponent = (props) => {
   const { image, name, price, url, description, reviews } = props;
 
   let reviewList = reviews.map(review => {
     return (
-      <div key={review.id}>
-        <h1>{review.description}</h1>
-        <h2>{review.value}</h2>
-      </div>
+      <RatingTile
+        key={review.id}
+        value={review.value}
+        description={review.description}
+      />
     )
   })
 
@@ -35,8 +37,8 @@ const ProductShowComponent = (props) => {
             {description}
           </ul>
           <hr />
+          <h2>Ratings</h2>
           {reviewList}
-          <hr />
           <ReviewForm />
         </div>
       </div>
