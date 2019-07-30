@@ -6,6 +6,7 @@ import com.launchacademy.programmingswaglist.models.Review;
 import com.launchacademy.programmingswaglist.repositories.*;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class ProductRestController {
   @GetMapping("/api/v1/products")
   public ResponseEntity<?> getList(){
     
-    Iterable<Product> products = productRepository.findAll();
+    Iterable<Product> products = productRepository.findAll(Sort.by("id").ascending());
     List<Double> aggregateReviews = new ArrayList<>();
 
     for (Product product : products) {
@@ -92,7 +93,7 @@ public class ProductRestController {
 
   @PutMapping("/api/v1/edit/{productId}")
   public void saveProductEditUpdate(@RequestBody Product updateProduct, @PathVariable Integer productId){
-    Product product = productRepository.findById(productId).orElseThrow(() -> new ProductRestController.ProductNotFoundException());
+    Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException());
     product.setName(updateProduct.getName());
     product.setPrice(updateProduct.getPrice());
     product.setDescription(updateProduct.getDescription());

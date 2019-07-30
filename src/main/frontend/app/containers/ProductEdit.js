@@ -52,24 +52,23 @@ class ProductEdit extends Component {
     const { name, price, description, url, imageUrl } = this.state.product;
     const { product } = this.state;
     event.preventDefault();
+
+    let pathnameArray = window.location.pathname.split('/');
+    let productId = pathnameArray[pathnameArray.length - 1];
+
+    fetch(`/api/v1/edit/${productId}`, {
+      method: 'PUT',
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(product)
+    })
+
+    document.location.replace(`/products/show/${productId}`)
     this.clearForm(event);
 
-    if (this.validateNameSelection(name) &&
-      this.validatePriceSelection(price) &&
-      this.validateDescriptionSelection(description) &&
-      this.validateUrlSelection(url) &&
-      this.validateImageUrl(imageUrl)) {
-        let pathnameArray = window.location.pathname.split('/')
-        let productId = pathnameArray[pathnameArray.length - 1];    
-      fetch(`/api/v1/edit/${productId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-      this.clearForm(event);
-    }
   }
 
   validateNameSelection(selection) {
