@@ -31,6 +31,7 @@ const ProductShowComponent = (props) => {
     <div className="flex-container">
       <div><img src={image} alt={name} /></div>
       <div>
+        <a href='/products' className="btn btn-primary btn">Go back to all products</a>
         <div className="product-name">
           <button onClick={deleteProduct} type="button" className="btn btn-danger btn-md float-edit">
             Delete Product

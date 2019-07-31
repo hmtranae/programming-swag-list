@@ -85,6 +85,8 @@ class ReviewForm extends Component {
         },
         body: JSON.stringify(review)
       })
+      this.clearForm(event);
+      document.location.replace(`/products/show/${productId}`)
     }
 
   }
@@ -116,7 +118,7 @@ class ReviewForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, isEdit } = this.state;
     const { description, value } = this.state.review;
 
     let errorDiv;
@@ -131,7 +133,7 @@ class ReviewForm extends Component {
 
     return (
       <div className="container">
-        <h1>Add a New Review</h1>
+        <h1>{isEdit ? 'Edit Review' : 'Add a New Review'}</h1>
         <form onSubmit={this.persistOrUpdateReview}>
           {errorDiv}
           <FieldInput
@@ -150,7 +152,7 @@ class ReviewForm extends Component {
             onChange={this.onChange}
             value={value}
           />
-          <button type='submit' className="btn btn-primary btn-lg btn-block">Add review</button>
+          <button type='submit' className="btn btn-primary btn-lg btn-block">{isEdit ? 'Edit review' : 'Add review'}</button>
         </form>
       </div>
     )

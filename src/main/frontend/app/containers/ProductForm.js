@@ -84,7 +84,6 @@ class ProductForm extends Component {
         },
         body: JSON.stringify(product)
       })
-
       document.location.replace(`/products/show/${productId}`)
       this.clearForm(event);
     }
