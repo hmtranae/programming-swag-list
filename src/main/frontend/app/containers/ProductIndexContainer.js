@@ -7,7 +7,7 @@ class ProductIndexContainer extends Component {
     this.state = {
       products: [],
       filtered: [],
-      aggregateReviews: []
+      aggregateReviews: {}
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -53,7 +53,7 @@ class ProductIndexContainer extends Component {
           <figure className="col-md-4" key={product.id}>
             <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
             <h3>$ {product.price}</h3>
-            <h3>Overall Rating: {aggregateReviews[i].toFixed(2)}</h3>
+            <h3>Overall Rating: {aggregateReviews[product.id].toFixed(2)}</h3>
             <a href={product.imageUrl}>
               <img className="img-fluid" src={product.imageUrl} alt={product.name} />
             </a>

@@ -4,6 +4,8 @@ import com.launchacademy.programmingswaglist.dtos.ProductDTO;
 import com.launchacademy.programmingswaglist.models.Product;
 import com.launchacademy.programmingswaglist.models.Review;
 import com.launchacademy.programmingswaglist.repositories.*;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -48,18 +50,18 @@ public class ProductRestController {
   public ResponseEntity<?> getList(){
     
     Iterable<Product> products = productRepository.findAll(Sort.by("id").ascending());
-    List<Double> aggregateReviews = new ArrayList<>();
+    Map<Integer, Double> aggregateReviews = new HashMap<>();
 
     for (Product product : products) {
       List<Review> reviews = reviewRepository.findAllByProductId(product.getId());
       if (reviews.size() == 0) {
-        aggregateReviews.add(0.00);
+        aggregateReviews.put(product.getId(), 0.00);
       } else {
         Double count = 0.00;
         for (Review review : reviews) {
           count += review.getValue();
         }
-        aggregateReviews.add((count / reviews.size()));
+        aggregateReviews.put(product.getId(), (count / reviews.size()));
       }
     }
 
