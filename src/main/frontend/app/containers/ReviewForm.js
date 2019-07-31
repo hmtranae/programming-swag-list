@@ -54,23 +54,39 @@ class ReviewForm extends Component {
   }
 
   persistOrUpdateReview(event) {
-    const { review } = this.state;
-    let pathname = window.location.pathname.split('/');
-    let productId = pathname[pathname.length - 1];
-
+    const { review, isEdit } = this.state;
     event.preventDefault();
 
-    fetch(`/api/v1/reviews/${productId}`, {
-      method: "POST",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(review)
-    })
-    this.clearForm(event);
-    document.location.replace(`/products/show/${productId}`)
+    if (!isEdit) {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[pathname.length - 1];
+      fetch(`/api/v1/reviews/${productId}`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(review)
+      })
+      this.clearForm(event);
+      document.location.replace(`/products/show/${productId}`)
+    } else {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[3];
+      let reviewId = pathname[pathname.length - 1];
+
+      fetch(`/api/v1/edit/product/${productId}/review/${reviewId}`, {
+        method: 'PUT',
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(review)
+      })
+    }
+
   }
 
   validateDescriptionSelection(selection) {

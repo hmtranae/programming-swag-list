@@ -46,4 +46,13 @@ public class ReviewsRestController {
   public Review getReview(@PathVariable Integer productId, @PathVariable Integer reviewId) {
     return reviewRepository.findByIdAndProductId(reviewId, productId);
   }
+
+  @PutMapping("/api/v1/edit/product/{productId}/review/{reviewId}")
+  public void editReview(@RequestBody Review updatedReview, @PathVariable Integer productId, @PathVariable Integer reviewId) {
+    Review review = reviewRepository.findByIdAndProductId(reviewId, productId);
+    review.setDescription(updatedReview.getDescription());
+    review.setValue(updatedReview.getValue());
+
+    reviewRepository.save(review);
+  }
 }
