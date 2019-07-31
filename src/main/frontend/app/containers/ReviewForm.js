@@ -9,13 +9,40 @@ class ReviewForm extends Component {
       review: {
         description: '',
         value: ''
-      }
+      },
+      isEdit: false
     }
 
     this.onChange = this.onChange.bind(this);
-    this.persistReview = this.persistReview.bind(this);
+    this.persistOrUpdateReview = this.persistOrUpdateReview.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.validateDescriptionSelection = this.validateDescriptionSelection.bind(this);
+  }
+
+  componentDidMount() {
+    if (window.location.pathname.includes("reviews")) {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[3];
+      let reviewId = pathname[pathname.length - 1];
+
+      fetch(`/api/v1/products/${productId}/reviews/${reviewId}/edit`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+        .then(res => res.json())
+        .then(body => {
+          let review = {};
+          review['description'] = body.description;
+          review['value'] = body.value;
+          this.setState({
+            review,
+            isEdit: true
+          })
+        })
+    }
   }
 
   onChange(event) {
@@ -26,7 +53,7 @@ class ReviewForm extends Component {
     this.setState({ review })
   }
 
-  persistReview(event) {
+  persistOrUpdateReview(event) {
     const { review } = this.state;
     let pathname = window.location.pathname.split('/');
     let productId = pathname[pathname.length - 1];
@@ -89,7 +116,7 @@ class ReviewForm extends Component {
     return (
       <div className="container">
         <h1>Add a New Review</h1>
-        <form onSubmit={this.persistReview}>
+        <form onSubmit={this.persistOrUpdateReview}>
           {errorDiv}
           <FieldInput
             label="Description: "

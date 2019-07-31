@@ -28,10 +28,10 @@ class ProductForm extends Component {
   }
 
   componentDidMount() {
-    let pathnameArray = window.location.pathname.split('/')
-    let productId = pathnameArray[pathnameArray.length - 1];
-
     if (window.location.pathname.includes("edit")) {
+      let pathnameArray = window.location.pathname.split('/')
+      let productId = pathnameArray[pathnameArray.length - 1];
+
       fetch(`/api/v1/edit/${productId}`)
         .then(response => response.json())
         .then(body => {

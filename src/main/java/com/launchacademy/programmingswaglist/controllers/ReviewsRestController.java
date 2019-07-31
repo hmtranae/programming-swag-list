@@ -5,6 +5,7 @@ import com.launchacademy.programmingswaglist.models.Product;
 import com.launchacademy.programmingswaglist.models.Review;
 import com.launchacademy.programmingswaglist.repositories.ProductRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,10 @@ public class ReviewsRestController {
   @GetMapping("/api/v1/reviews/{productId}")
   public List<Review> getReviews(@PathVariable Integer productId) {
     return reviewRepository.findAllByProductId(productId);
+  }
+
+  @GetMapping("/api/v1/products/{productId}/reviews/{reviewId}/edit")
+  public Review getReview(@PathVariable Integer productId, @PathVariable Integer reviewId) {
+    return reviewRepository.findByIdAndProductId(reviewId, productId);
   }
 }
