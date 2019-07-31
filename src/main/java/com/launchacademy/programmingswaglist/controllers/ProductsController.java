@@ -26,13 +26,8 @@ public class ProductsController {
       return "products/index";
     }
 
-    @GetMapping("/products/new")
+    @GetMapping({"/products/new", "/products/edit/{productId}"})
     public String getProductForm() {
       return "products/new";
-    }
-
-    @GetMapping("/products/edit/{productId}")
-    public String getProductEditForm() {
-      return "products/edit";
     }
 }

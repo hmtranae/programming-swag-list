@@ -13,11 +13,12 @@ class ProductForm extends Component {
         description: '',
         url: '',
         imageUrl: ''
-      }
+      },
+      isEdit: false
     }
 
     this.onChange = this.onChange.bind(this);
-    this.persistProduct = this.persistProduct.bind(this);
+    this.persistOrUpdateProduct = this.persistOrUpdateProduct.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.validateNameSelection = this.validateNameSelection.bind(this);
     this.validatePriceSelection = this.validatePriceSelection.bind(this);
@@ -26,23 +27,39 @@ class ProductForm extends Component {
     this.validateImageUrl = this.validateImageUrl.bind(this);
   }
 
+  componentDidMount() {
+    let pathnameArray = window.location.pathname.split('/')
+    let productId = pathnameArray[pathnameArray.length - 1];
+
+    if (window.location.pathname.includes("edit")) {
+      fetch(`/api/v1/edit/${productId}`)
+        .then(response => response.json())
+        .then(body => {
+          let product = {};
+          product['name'] = body.name;
+          product['price'] = body.price;
+          product['description'] = body.description;
+          product['url'] = body.url;
+          product['imageUrl'] = body.imageUrl;
+          this.setState({
+            product,
+            isEdit: true
+          })
+        })
+    }
+  }
+
   onChange(event) {
     const { product } = this.state;
     product[event.target.name] = event.target.value;
     this.setState({ product })
   }
 
-  persistProduct(event) {
-    const { name, price, description, url, imageUrl } = this.state.product;
-    const { product } = this.state;
+  persistOrUpdateProduct(event) {
+    const { product, isEdit } = this.state;
     event.preventDefault();
-    this.clearForm(event);
 
-    if (this.validateNameSelection(name) &&
-      this.validatePriceSelection(price) &&
-      this.validateDescriptionSelection(description) &&
-      this.validateUrlSelection(url) &&
-      this.validateImageUrl(imageUrl)) {
+    if (!isEdit) {
       fetch("/api/v1/products", {
         method: "POST",
         credentials: "same-origin",
@@ -52,6 +69,23 @@ class ProductForm extends Component {
         },
         body: JSON.stringify(product)
       })
+      document.location.replace('/products')
+      this.clearForm(event);
+    } else {
+      let pathnameArray = window.location.pathname.split('/');
+      let productId = pathnameArray[pathnameArray.length - 1];
+
+      fetch(`/api/v1/edit/${productId}`, {
+        method: 'PUT',
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(product)
+      })
+
+      document.location.replace(`/products/show/${productId}`)
       this.clearForm(event);
     }
   }
@@ -146,7 +180,7 @@ class ProductForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, isEdit } = this.state;
     const { name, price, description, url, imageUrl } = this.state.product;
 
     let errorDiv;
@@ -161,8 +195,8 @@ class ProductForm extends Component {
 
     return (
       <div className="container">
-        <h1>Add a New Product</h1>
-        <form onSubmit={this.persistProduct}>
+        <h1>{isEdit ? 'Edit Product' : 'Add a New Product'}</h1>
+        <form onSubmit={this.persistOrUpdateProduct}>
           {errorDiv}
           <FieldInput
             label="Name: "
@@ -199,7 +233,7 @@ class ProductForm extends Component {
             onChange={this.onChange}
             value={imageUrl}
           />
-          <button type='submit' className="btn btn-primary btn-lg btn-block">Add product</button>
+          <button type='submit' className="btn btn-primary btn-lg btn-block">{isEdit ? 'Edit product' : 'Add product'}</button>
         </form>
       </div>
     )
