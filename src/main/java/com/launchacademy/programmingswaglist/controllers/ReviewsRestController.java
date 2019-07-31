@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ReviewsController {
+public class ReviewsRestController {
 
   private ReviewRepository reviewRepository;
   private ProductRepository productRepository;
 
   @Autowired
-  public ReviewsController(
+  public ReviewsRestController(
       ReviewRepository reviewRepository, ProductRepository productRepository) {
     this.reviewRepository = reviewRepository;
     this.productRepository = productRepository;
@@ -39,5 +39,10 @@ public class ReviewsController {
   @GetMapping("/api/v1/reviews/{productId}")
   public List<Review> getReviews(@PathVariable Integer productId) {
     return reviewRepository.findAllByProductId(productId);
+  }
+
+  @DeleteMapping("/api/v1/reviews/{reviewId}")
+  public void deleteProductReviews(@PathVariable Integer reviewId) {
+    reviewRepository.deleteById(reviewId);
   }
 }
