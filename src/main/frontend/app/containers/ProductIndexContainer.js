@@ -63,9 +63,9 @@ class ProductIndexContainer extends Component {
 
       return (
         <div>
-          <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
           <h1>All the Swaggest Programming Products</h1>
           <hr />
+          <input type="text" className="input container form-control" onChange={this.handleChange} placeholder="Search..." />
           <div className="row">
             {productList}
           </div>
