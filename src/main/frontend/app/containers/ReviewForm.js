@@ -42,8 +42,8 @@ class ReviewForm extends Component {
       },
       body: JSON.stringify(review)
     })
-
     this.clearForm(event);
+    document.location.replace(`/products/show/${productId}`)
   }
 
   validateDescriptionSelection(selection) {
