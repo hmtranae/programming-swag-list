@@ -20,6 +20,7 @@ const ProductShowComponent = (props) => {
     return (
       <RatingTile
         key={review.id}
+        id={review.id}
         value={review.value}
         description={review.description}
       />
@@ -30,11 +31,12 @@ const ProductShowComponent = (props) => {
     <div className="flex-container">
       <div><img src={image} alt={name} /></div>
       <div>
+        <a href='/products' className="btn btn-primary btn">Go back to all products</a>
         <div className="product-name">
-          <button onClick={deleteProduct} type="button" className="btn btn-danger btn-sm float-edit">
+          <button onClick={deleteProduct} type="button" className="btn btn-danger btn-md float-edit">
             Delete Product
           </button>
-          <a href={`/products/edit/${id}`} className="btn btn-default btn-sm float-edit">
+          <a href={`/products/edit/${id}`} className="btn btn-secondary btn-md float-edit">
             Edit Product
           </a>
           <h2>{name}</h2>

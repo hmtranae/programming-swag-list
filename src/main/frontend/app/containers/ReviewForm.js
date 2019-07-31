@@ -9,13 +9,40 @@ class ReviewForm extends Component {
       review: {
         description: '',
         value: ''
-      }
+      },
+      isEdit: false
     }
 
     this.onChange = this.onChange.bind(this);
-    this.persistReview = this.persistReview.bind(this);
+    this.persistOrUpdateReview = this.persistOrUpdateReview.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.validateDescriptionSelection = this.validateDescriptionSelection.bind(this);
+  }
+
+  componentDidMount() {
+    if (window.location.pathname.includes("reviews")) {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[3];
+      let reviewId = pathname[pathname.length - 1];
+
+      fetch(`/api/v1/products/${productId}/reviews/${reviewId}/edit`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+        .then(res => res.json())
+        .then(body => {
+          let review = {};
+          review['description'] = body.description;
+          review['value'] = body.value;
+          this.setState({
+            review,
+            isEdit: true
+          })
+        })
+    }
   }
 
   onChange(event) {
@@ -26,24 +53,42 @@ class ReviewForm extends Component {
     this.setState({ review })
   }
 
-  persistReview(event) {
-    const { review } = this.state;
-    let pathname = window.location.pathname.split('/');
-    let productId = pathname[pathname.length - 1];
-
+  persistOrUpdateReview(event) {
+    const { review, isEdit } = this.state;
     event.preventDefault();
 
-    fetch(`/api/v1/reviews/${productId}`, {
-      method: "POST",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(review)
-    })
-    this.clearForm(event);
-    document.location.replace(`/products/show/${productId}`)
+    if (!isEdit) {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[pathname.length - 1];
+      fetch(`/api/v1/reviews/${productId}`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(review)
+      })
+      this.clearForm(event);
+      document.location.replace(`/products/show/${productId}`)
+    } else {
+      let pathname = window.location.pathname.split('/');
+      let productId = pathname[3];
+      let reviewId = pathname[pathname.length - 1];
+
+      fetch(`/api/v1/edit/product/${productId}/review/${reviewId}`, {
+        method: 'PUT',
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(review)
+      })
+      this.clearForm(event);
+      document.location.replace(`/products/show/${productId}`)
+    }
+
   }
 
   validateDescriptionSelection(selection) {
@@ -73,7 +118,7 @@ class ReviewForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, isEdit } = this.state;
     const { description, value } = this.state.review;
 
     let errorDiv;
@@ -88,8 +133,8 @@ class ReviewForm extends Component {
 
     return (
       <div className="container">
-        <h1>Add a New Review</h1>
-        <form onSubmit={this.persistReview}>
+        <h1>{isEdit ? 'Edit Review' : 'Add a New Review'}</h1>
+        <form onSubmit={this.persistOrUpdateReview}>
           {errorDiv}
           <FieldInput
             label="Description: "
@@ -107,7 +152,7 @@ class ReviewForm extends Component {
             onChange={this.onChange}
             value={value}
           />
-          <button type='submit' className="btn btn-primary btn-lg btn-block">Add review</button>
+          <button type='submit' className="btn btn-primary btn-lg btn-block">{isEdit ? 'Edit review' : 'Add review'}</button>
         </form>
       </div>
     )

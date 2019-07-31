@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ProductShowComponent from '../components/ProductShowComponent';
-
 import '../css/showpage.scss'
 
 class ProductShowContainer extends Component {
@@ -21,8 +20,10 @@ class ProductShowContainer extends Component {
         return Promise.all([res1.json(), res2.json()])
       })
       .then(([product, reviews]) => {
-        this.setState({ product })
-        this.setState({ reviews: reviews })
+        this.setState({
+          product,
+          reviews
+        })
       });
   }
 
