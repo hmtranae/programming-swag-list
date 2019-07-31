@@ -19,6 +19,7 @@ const ProductShowComponent = (props) => {
   let reviewList = reviews.map(review => {
     return (
       <RatingTile
+        id={review.id}
         key={review.id}
         value={review.value}
         description={review.description}
