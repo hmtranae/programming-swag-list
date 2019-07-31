@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Integer> {
-    List<Review> findAllByProductId(Integer productId);
+  List<Review> findAllByProductId(Integer productId);
 }

@@ -6,7 +6,8 @@ class ProductIndexContainer extends Component {
     super(props);
     this.state = {
       products: [],
-      filtered: []
+      filtered: [],
+      aggregateReviews: []
     }
   this.handleChange = this.handleChange.bind(this);
   }
@@ -52,6 +53,27 @@ class ProductIndexContainer extends Component {
         <a href={product.imageUrl}>
           <img className="img-fluid" src={product.imageUrl} alt={product.name} />
         </a>
+      .then(obj => {
+        this.setState({
+          products: obj.products,
+          aggregateReviews: obj.aggregateReviews
+        })
+      })
+  }
+
+
+
+  render() {
+    const { products, aggregateReviews } = this.state;
+    let productList = products.map((product, i) => {
+      return (
+        <figure className="col-md-4" key={product.id}>
+          <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
+          <h3>$ {product.price}</h3>
+          <h3>Overalll Rating: {aggregateReviews[i].toFixed(2)}</h3>
+          <a href={product.imageUrl}>
+            <img className="img-fluid" src={product.imageUrl} alt={product.name} />
+          </a>
         </figure>
         )
         })
@@ -61,6 +83,7 @@ class ProductIndexContainer extends Component {
       <div>
          <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
        </div>
+        <a className='btn btn-primary float-right add-button' href="/products/new">Add a new Product</a>
         <h1>All the Swaggest Programming Products</h1>
         <hr />
         <div className="row">

@@ -5,16 +5,10 @@ import com.launchacademy.programmingswaglist.models.Product;
 import com.launchacademy.programmingswaglist.models.Review;
 import com.launchacademy.programmingswaglist.repositories.ProductRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ReviewsController {
@@ -30,7 +24,7 @@ public class ReviewsController {
   }
 
   @PostMapping("/api/v1/reviews/{productId}")
-  public Review createReview(@RequestBody Review review, @PathVariable Integer productId) {
+  public void createReview(@RequestBody Review review, @PathVariable Integer productId) {
     Product product = productRepository.findById(productId)
         .orElseThrow(() -> new ProductNotFoundException());
     List<Review> reviews = product.getReviewsList();
@@ -40,7 +34,6 @@ public class ReviewsController {
     product.setReviewsList(reviews);
 
     productRepository.save(product);
-    return reviewRepository.save(review);
   }
 
   @GetMapping("/api/v1/reviews/{productId}")
