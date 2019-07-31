@@ -44,7 +44,6 @@ class ProductIndexContainer extends Component {
 
   render() {
       const { filtered } = this.state;
-      console.log(filtered)
       let productList = filtered.map(product => {
       return (
         <figure className="col-md-4" key={product.id}>
