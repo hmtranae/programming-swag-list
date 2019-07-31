@@ -42,6 +42,7 @@ class ProductIndexContainer extends Component {
 
     return (
       <div>
+        <a className='btn btn-primary float-right add-button' href="/products/new">Add a new Product</a>
         <h1>All the Swaggest Programming Products</h1>
         <hr />
         <div className="row">
