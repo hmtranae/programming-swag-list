@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     System.out.println("CONFIGURING SECURITY");
     http.csrf().disable();
+    http.formLogin().defaultSuccessUrl("/welcome", true);
     http.
       authorizeRequests().anyRequest().permitAll().and().
       formLogin().loginPage("/login").permitAll().and().
