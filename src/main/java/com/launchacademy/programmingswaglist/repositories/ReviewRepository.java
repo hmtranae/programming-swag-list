@@ -11,4 +11,5 @@ import java.util.List;
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Integer> {
   List<Review> findAllByProductId(Integer productId);
   Review findByIdAndProductId(Integer reviewId, Integer productId);
+  void deleteByIdAndProductId(Integer reviewId, Integer productId);
 }

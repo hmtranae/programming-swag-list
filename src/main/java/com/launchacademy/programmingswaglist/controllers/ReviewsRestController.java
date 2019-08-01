@@ -5,13 +5,14 @@ import com.launchacademy.programmingswaglist.models.Product;
 import com.launchacademy.programmingswaglist.models.Review;
 import com.launchacademy.programmingswaglist.repositories.ProductRepository;
 import com.launchacademy.programmingswaglist.repositories.ReviewRepository;
-import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Transactional
 public class ReviewsRestController {
 
   private ReviewRepository reviewRepository;
@@ -54,5 +55,10 @@ public class ReviewsRestController {
     review.setValue(updatedReview.getValue());
 
     reviewRepository.save(review);
+  }
+
+  @DeleteMapping("/api/v1/reviews/{reviewId}/products/{productId}")
+  public void deleteReview(@PathVariable Integer reviewId, @PathVariable Integer productId) {
+    reviewRepository.deleteByIdAndProductId(reviewId, productId);
   }
 }
