@@ -17,6 +17,7 @@ const Welcome = (props) => {
       <p>See what you are missing in the tech world, leave reviews or suggest new products for others to try!</p>
 
       <a className="container btn btn-primary btn-lg btn-block" href="/products"> Click here to view all products </a>
+      <a className="container btn btn-danger btn-lg btn-block" href="/logout"> Logout </a>
     </div>
   )
 }
