@@ -51,9 +51,9 @@ class ProductIndexContainer extends Component {
       let productList = filtered.map((product, i) => {
         return (
           <figure className="col-md-4" key={product.id}>
-            <h2> <a href={`/products/show/${product.id}`}> {product.name} </a> </h2>
-            <h3>$ {product.price}</h3>
-            <h3>Overall Rating: {aggregateReviews[product.id].toFixed(2)}</h3>
+            <h3> <a href={`/products/show/${product.id}`}> {product.name} </a> </h3>
+            <h5>$ {product.price}</h5>
+            <h5>Overall Rating: {aggregateReviews[product.id].toFixed(2)}</h5>
             <a href={product.imageUrl}>
               <img className="img-fluid" src={product.imageUrl} alt={product.name} />
             </a>
