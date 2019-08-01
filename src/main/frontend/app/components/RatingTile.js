@@ -17,8 +17,9 @@ const RatingTile = (props) => {
 
   return (
     <div>
-      <p>Description: {description}</p>
-      <p>Rating: {value}</p>
+      <p><strong>Description: </strong></p>
+      <p>{description}</p>
+      <p><strong>Rating: </strong>{value}</p>
       <button id={id} onClick={deleteReview} type="button" className="btn btn-danger btn-sm">
         Delete Review
       </button>
